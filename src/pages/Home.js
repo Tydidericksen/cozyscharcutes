@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BannerImage from "../assets/HomeGrazing.JPG";
 import VideoSource from "../assets/VideoSource.mp4";
 import "../styles/Home.css";
 
