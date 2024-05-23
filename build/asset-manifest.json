@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6e22c664.css",
+    "main.js": "/static/js/main.4c699f29.js",
+    "static/media/VideoSource.mp4": "/static/media/VideoSource.fa0fde50e8d6e0643d1c.mp4",
+    "static/media/GrazingTable.jpg": "/static/media/GrazingTable.bbd258486cccdbe816bf.jpg",
+    "static/media/BuildYourOwn.jpg": "/static/media/BuildYourOwn.fb1617bcf4d94dbaa640.jpg",
+    "static/media/NumbersLetters.jpg": "/static/media/NumbersLetters.548f00019164db38a57b.jpg",
+    "static/media/MediumBoard.jpg": "/static/media/MediumBoard.fc538bfa3141f192ec31.jpg",
+    "static/media/Large.jpg": "/static/media/Large.3d65ff0522225709f57b.jpg",
+    "static/media/Small.jpg": "/static/media/Small.e0ffe5a7ab8e66075d7c.jpg",
+    "static/media/logo.png": "/static/media/logo.71217d7aea076cbf04ee.png",
+    "static/media/AboutBoard.jpeg": "/static/media/AboutBoard.285ab04b8473b8dd736d.jpeg",
+    "static/media/HomeGrazing.JPG": "/static/media/HomeGrazing.adaf397b74b2db340ac2.JPG",
+    "static/media/Cups.jpg": "/static/media/Cups.20a716153ef7130b396f.jpg",
+    "static/media/Boxes.jpg": "/static/media/Boxes.c8e6f8dbde1fa1d31d0c.jpg",
+    "index.html": "/index.html",
+    "main.6e22c664.css.map": "/static/css/main.6e22c664.css.map",
+    "main.4c699f29.js.map": "/static/js/main.4c699f29.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e22c664.css",
+    "static/js/main.4c699f29.js"
+  ]
+}
