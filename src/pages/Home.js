@@ -13,7 +13,7 @@ function Home() {
       </video>
       <div className="headerContainer">
         <h1> COZY CHARCUTES </h1>
-        <p> PIZZA TO FIT ANY TASTE</p>
+        <p> SPICE UP ANY OCCASION</p>
         <Link to="/menu">
           <button> ORDER NOW </button>
         </Link>
