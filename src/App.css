@@ -1,8 +1,40 @@
 .App {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+/* Ensure the main content area takes up available space */
+.App > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Remove any default margins/padding that might interfere */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
 }
