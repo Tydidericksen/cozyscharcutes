@@ -2,20 +2,17 @@
 
 :root {
   /* Color Palette */
-  --primary-color: #6B8742;      /* Olive Green */
-  --secondary-color: #7B635F;    /* Dusty Brown */
-  --accent-color: #A75D37;       /* Terracotta */
-  --highlight-color: #F4B89D;    /* Blush Peach */
-  --info-color: #25373B;         /* Deep Blue-Green */
-  --teal: #045455;               /* Teal */
-  --neutral-light: #F4B89D;      /* Use blush peach for light backgrounds */
-  --neutral-dark: #25373B;       /* Deep Blue-Green for dark text */
+  --primary-color: #8B4513; /* Rich brown */
+  --secondary-color: #D2691E; /* Chocolate orange */
+  --accent-color: #FFD700; /* Gold accent */
+  --neutral-light: #F5F5DC; /* Beige */
+  --neutral-dark: #2F2F2F; /* Dark gray */
   --white: #FFFFFF;
   --black: #1A1A1A;
-  --success: #6B8742;
-  --error: #A75D37;
-  --warning: #F4B89D;
-
+  --success: #4CAF50;
+  --error: #F44336;
+  --warning: #FF9800;
+  
   /* Typography */
   --font-primary: 'Playfair Display', serif;
   --font-secondary: 'Inter', sans-serif;
@@ -28,7 +25,7 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
-
+  
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -37,19 +34,19 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
-
+  
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-
+  
   /* Border Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
-
+  
   /* Transitions */
   --transition-fast: 0.15s ease-in-out;
   --transition-normal: 0.3s ease-in-out;
@@ -66,7 +63,7 @@ body {
   font-family: var(--font-secondary);
   line-height: 1.6;
   color: var(--neutral-dark);
-  background-color: var(--neutral-light);
+  background-color: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -103,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-color);
+  background-color: var(--secondary-color);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
