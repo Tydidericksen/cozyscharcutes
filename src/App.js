@@ -1,31 +1,53 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './styles/globals.css';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/navbar';
-import Home from './pages/Home';
-import Menu from './pages/Menu';
-import Contact from './pages/Contact';
-import Cart from './pages/Cart';
-import FAQ from './pages/FAQ';
 import Footer from './components/Footer';
+import './styles/globals.css';
+
+// Lazy load pages for better performance
+const Home = React.lazy(() => import('./pages/Home'));
+const Menu = React.lazy(() => import('./pages/Menu'));
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Cart = React.lazy(() => import('./pages/Cart'));
+const FAQ = React.lazy(() => import('./pages/FAQ'));
+
+// Loading component
+const LoadingSpinner = () => (
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '50vh',
+    fontSize: '18px',
+    color: 'var(--primary-color)'
+  }}>
+    Loading...
+  </div>
+);
 
 function App() {
   return (
     <CartProvider>
-      <div className="App">
-        <Router>
+      <Router>
+        <div className="App">
           <Navbar />
-          <Routes>
-            <Route path='/' exact Component={Home} />
-            <Route path='/menu' exact Component={Menu} />
-            <Route path='/contact' exact Component={Contact} />
-            <Route path='/cart' exact Component={Cart} />
-            <Route path='/faq' exact Component={FAQ} />
-          </Routes>
+          <main>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/menu" exact element={<Menu />} />
+                <Route path="/about" exact element={<About />} />
+                <Route path="/contact" exact element={<Contact />} />
+                <Route path="/cart" exact element={<Cart />} />
+                <Route path="/faq" exact element={<FAQ />} />
+              </Routes>
+            </Suspense>
+          </main>
           <Footer />
-        </Router>
-      </div>
+        </div>
+      </Router>
     </CartProvider>
   );
 }

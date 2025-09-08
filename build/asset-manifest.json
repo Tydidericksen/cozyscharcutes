@@ -1,7 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.01ec7040.css",
-    "main.js": "/static/js/main.ce19fdcd.js",
+    "main.css": "/static/css/main.fc533b8c.css",
+    "main.js": "/static/js/main.80428a02.js",
+    "static/css/435.7902645f.chunk.css": "/static/css/435.7902645f.chunk.css",
+    "static/js/435.727431bc.chunk.js": "/static/js/435.727431bc.chunk.js",
+    "static/css/662.710c21be.chunk.css": "/static/css/662.710c21be.chunk.css",
+    "static/js/662.965a1658.chunk.js": "/static/js/662.965a1658.chunk.js",
+    "static/css/417.0612a296.chunk.css": "/static/css/417.0612a296.chunk.css",
+    "static/js/417.71e5b139.chunk.js": "/static/js/417.71e5b139.chunk.js",
+    "static/css/337.8042c238.chunk.css": "/static/css/337.8042c238.chunk.css",
+    "static/js/337.cbe58f30.chunk.js": "/static/js/337.cbe58f30.chunk.js",
+    "static/css/897.e654808d.chunk.css": "/static/css/897.e654808d.chunk.css",
+    "static/js/897.d11f755a.chunk.js": "/static/js/897.d11f755a.chunk.js",
+    "static/css/23.bda3fdee.chunk.css": "/static/css/23.bda3fdee.chunk.css",
+    "static/js/23.70042371.chunk.js": "/static/js/23.70042371.chunk.js",
     "static/media/VideoSource.mp4": "/static/media/VideoSource.fa0fde50e8d6e0643d1c.mp4",
     "static/media/Tezza-9341.JPG": "/static/media/Tezza-9341.04e2ab010a8dbfd16a69.JPG",
     "static/media/Tezza-0993.JPG": "/static/media/Tezza-0993.8cde7e24923a729bf06f.JPG",
@@ -72,16 +84,15 @@
     "static/media/Small.jpg": "/static/media/Small.e0ffe5a7ab8e66075d7c.jpg",
     "static/media/Tezza-8541.jpeg": "/static/media/Tezza-8541.a81562555659503c8457.jpeg",
     "static/media/Tezza-1657.JPG": "/static/media/Tezza-1657.5ecf4f2ccc64ceda0b27.JPG",
+    "static/media/AboutBoard.jpeg": "/static/media/AboutBoard.285ab04b8473b8dd736d.jpeg",
     "static/media/F3661D3E-90FC-45B4-81C9-17763EDD0947.JPG": "/static/media/F3661D3E-90FC-45B4-81C9-17763EDD0947.0fcf9b183e248357faab.JPG",
     "static/media/334E7790-6A5A-43E4-A90D-97A46662B29A.JPG": "/static/media/334E7790-6A5A-43E4-A90D-97A46662B29A.130a8a302f631198928f.JPG",
     "static/media/Cups.jpg": "/static/media/Cups.20a716153ef7130b396f.jpg",
     "static/media/Boxes.jpg": "/static/media/Boxes.c8e6f8dbde1fa1d31d0c.jpg",
-    "index.html": "/index.html",
-    "main.01ec7040.css.map": "/static/css/main.01ec7040.css.map",
-    "main.ce19fdcd.js.map": "/static/js/main.ce19fdcd.js.map"
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.01ec7040.css",
-    "static/js/main.ce19fdcd.js"
+    "static/css/main.fc533b8c.css",
+    "static/js/main.80428a02.js"
   ]
 }
