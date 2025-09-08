@@ -1,14 +1,57 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import VideoSource from "../assets/VideoSource.mp4";
 import "../styles/Home.css";
 import Gallery from '../components/Gallery';
 
 function Home() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Ensure video doesn't go fullscreen on mobile
+      video.setAttribute('playsinline', 'true');
+      video.setAttribute('webkit-playsinline', 'true');
+      video.setAttribute('x5-playsinline', 'true');
+      video.setAttribute('x5-video-player-type', 'h5');
+      video.setAttribute('x5-video-player-fullscreen', 'false');
+      
+      // Prevent context menu and controls on mobile
+      video.controls = false;
+      video.disablePictureInPicture = true;
+      
+      // Ensure autoplay works
+      video.muted = true;
+      video.loop = true;
+      video.autoplay = true;
+      
+      // Play the video
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Autoplay prevented:', error);
+        });
+      }
+    }
+  }, []);
+
   return (
     <div className="home-page">
       <div className="home">
-        <video autoPlay loop muted className="video-background">
+        <video 
+          ref={videoRef}
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="false"
+          disablePictureInPicture
+          className="video-background"
+        >
           <source src={VideoSource} type="video/mp4" />
         </video>
         <div className="hero-overlay"></div>
