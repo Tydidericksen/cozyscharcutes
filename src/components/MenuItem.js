@@ -1,99 +1,107 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import CustomOrderModal from './CustomOrderModal';
+import OptimizedImage from './OptimizedImage';
 import QuantityModal from './QuantityModal';
+import CustomOrderModal from './CustomOrderModal';
 import '../styles/MenuItem.css';
 
-function MenuItem({ image, name, price, description, serves, category, id }) {
-  const [showModal, setShowModal] = useState(false);
-  const [showQtyModal, setShowQtyModal] = useState(false);
+function MenuItem({ id, name, image, price, description, serves, category }) {
   const { addToCart } = useCart();
+  const [showQuantityModal, setShowQuantityModal] = useState(false);
+  const [showCustomOrderModal, setShowCustomOrderModal] = useState(false);
+  
+  const isVariablePrice = price === "Price varies";
+  const hasMinimumOrder = id === 'charcuterie-cups' || id === 'charcuterie-boxes';
 
-  const handleGetQuote = () => {
-    setShowModal(true);
-  };
-
-  const handleAddToOrder = () => {
-    setShowQtyModal(true);
+  const handleAddToCart = () => {
+    if (isVariablePrice) {
+      setShowCustomOrderModal(true);
+    } else {
+      setShowQuantityModal(true);
+    }
   };
 
   const handleQuantitySubmit = (quantity) => {
-    addToCart({ id, name, price, image, description, serves, category, quantity });
-    setShowQtyModal(false);
+    addToCart({
+      id,
+      name,
+      price,
+      description,
+      serves,
+      category,
+      quantity
+    });
+    setShowQuantityModal(false);
   };
 
-  const isVariablePrice = price === null || typeof price === 'string';
-  const hasMinimumOrder = id === 'charcuterie-cups' || id === 'charcuterie-boxes';
-  const showServes = !isVariablePrice && !hasMinimumOrder;
+  const handleCustomOrderSubmit = (customOptions) => {
+    addToCart({
+      id,
+      name,
+      price: "Price varies",
+      description,
+      serves,
+      category,
+      quantity: 1,
+      customOptions
+    });
+    setShowCustomOrderModal(false);
+  };
 
   return (
     <>
-      <div className="menu-item card">
+      <div className="menu-item">
         <div className="menu-item-image">
-          <img src={image} alt={name} />
-          <div className="menu-item-overlay">
-            <div className="menu-item-category">{category}</div>
-          </div>
+          <OptimizedImage
+            src={image}
+            alt={name}
+            className="menu-image"
+          />
         </div>
         
         <div className="menu-item-content">
-          <div className="menu-item-header">
-            <h3 className="menu-item-name">{name}</h3>
-            <span className="menu-item-price">
-              {isVariablePrice ? 'Price varies' : `$${price.toFixed(2)}`}
-            </span>
-          </div>
-          
+          <h3 className="menu-item-name">{name}</h3>
           <p className="menu-item-description">{description}</p>
           
           {hasMinimumOrder && (
-            <div className="menu-item-minimum">
-              <span className="minimum-label">Minimum Order:</span>
-              <span className="minimum-value">10 pieces</span>
-            </div>
+            <p className="minimum-order-note">Minimum Order: 10 pieces</p>
           )}
           
-          {showServes && (
-            <div className="menu-item-serves">
-              <span className="serves-label">Serves:</span>
-              <span className="serves-value">{serves}</span>
-            </div>
+          {!isVariablePrice && !hasMinimumOrder && (
+            <p className="menu-item-serves">Serves: {serves}</p>
           )}
           
-          <div className="menu-item-actions">
+          <div className="menu-item-footer">
+            <span className="menu-item-price">
+              {isVariablePrice ? "Price varies" : `$${price.toFixed(2)}`}
+            </span>
             <button 
-              className="add-to-cart-btn"
-              onClick={isVariablePrice ? handleGetQuote : handleAddToOrder}
+              className="btn btn-primary add-to-cart-btn"
+              onClick={handleAddToCart}
             >
-              <ShoppingCartIcon />
-              {isVariablePrice ? 'Get Quote' : 'Add to Order'}
+              {isVariablePrice ? "Get Quote" : "Add to Order"}
             </button>
           </div>
         </div>
       </div>
 
-      <CustomOrderModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        item={{
-          id,
-          name,
-          price,
-          image,
-          description,
-          serves,
-          category
-        }}
-      />
+      {showQuantityModal && (
+        <QuantityModal
+          itemName={name}
+          itemPrice={price}
+          onSubmit={handleQuantitySubmit}
+          onClose={() => setShowQuantityModal(false)}
+          hasMinimumOrder={hasMinimumOrder}
+        />
+      )}
 
-      <QuantityModal
-        isOpen={showQtyModal}
-        onClose={() => setShowQtyModal(false)}
-        onSubmit={handleQuantitySubmit}
-        itemName={name}
-        hasMinimumOrder={hasMinimumOrder}
-      />
+      {showCustomOrderModal && (
+        <CustomOrderModal
+          itemName={name}
+          onSubmit={handleCustomOrderSubmit}
+          onClose={() => setShowCustomOrderModal(false)}
+        />
+      )}
     </>
   );
 }
