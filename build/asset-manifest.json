@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.01ec7040.css",
-    "main.js": "/static/js/main.99aeaef2.js",
+    "main.js": "/static/js/main.ce19fdcd.js",
     "static/media/VideoSource.mp4": "/static/media/VideoSource.fa0fde50e8d6e0643d1c.mp4",
     "static/media/Tezza-9341.JPG": "/static/media/Tezza-9341.04e2ab010a8dbfd16a69.JPG",
     "static/media/Tezza-0993.JPG": "/static/media/Tezza-0993.8cde7e24923a729bf06f.JPG",
@@ -78,10 +78,10 @@
     "static/media/Boxes.jpg": "/static/media/Boxes.c8e6f8dbde1fa1d31d0c.jpg",
     "index.html": "/index.html",
     "main.01ec7040.css.map": "/static/css/main.01ec7040.css.map",
-    "main.99aeaef2.js.map": "/static/js/main.99aeaef2.js.map"
+    "main.ce19fdcd.js.map": "/static/js/main.ce19fdcd.js.map"
   },
   "entrypoints": [
     "static/css/main.01ec7040.css",
-    "static/js/main.99aeaef2.js"
+    "static/js/main.ce19fdcd.js"
   ]
 }

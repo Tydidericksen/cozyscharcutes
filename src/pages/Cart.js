@@ -10,18 +10,12 @@ import BasicInfoModal from '../components/BasicInfoModal';
 import '../styles/Cart.css';
 
 function Cart() {
-  const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
+  const { items, removeFromCart, updateQuantity, clearCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState({ type: '', text: '' });
+  // Removed unused message state
   const [orderNotes, setOrderNotes] = useState('');
   const [showBasicInfoModal, setShowBasicInfoModal] = useState(false);
-  const [basicInfo, setBasicInfo] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    eventDate: '',
-    eventTime: ''
-  });
+  // Removed unused basicInfo state
 
   const isCustomItem = (item) => {
     return typeof item.price === 'string' || item.customOptions;
@@ -92,7 +86,7 @@ function Cart() {
 
   const handleSubmitOrder = async (basicInfoData) => {
     setIsSubmitting(true);
-    setMessage({ type: '', text: '' });
+    // Removed setMessage call
 
     const serviceId = 'service_yc8eukp';
     const templateId = 'template_1l5yful';
@@ -117,7 +111,7 @@ function Cart() {
       // Then clear the cart
       clearCart();
       setOrderNotes('');
-      setBasicInfo({ name: '', email: '', phone: '', eventDate: '', eventTime: '' });
+      // Removed setBasicInfo call
     } catch (error) {
       console.error('Error sending order:', error);
       alert('Failed to submit order request. Please try again or contact us directly.');
@@ -131,7 +125,7 @@ function Cart() {
   };
 
   const handleBasicInfoSubmit = (basicInfoData) => {
-    setBasicInfo(basicInfoData);
+    // Removed setBasicInfo call
     handleSubmitOrder(basicInfoData);
   };
 
