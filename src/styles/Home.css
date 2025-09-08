@@ -26,12 +26,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* Ensure video stays in place */
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
+  /* Remove position: fixed to allow scrolling */
 }
 
 .hero-overlay {
