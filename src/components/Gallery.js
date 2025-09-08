@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import CloseIcon from '@mui/icons-material/Close';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import OptimizedImage from './ImageOptimizer';
 import '../styles/Gallery.css';
 
 // Function to shuffle array (Fisher-Yates algorithm)
@@ -13,40 +14,10 @@ const shuffleArray = (array) => {
   return shuffled;
 };
 
-// Lazy load images
-const LazyImage = ({ src, alt, onClick }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  return (
-    <div className="gallery-item" onClick={onClick}>
-      {!loaded && !error && (
-        <div className="image-placeholder">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
-      <img
-        src={src}
-        alt={alt}
-        onLoad={() => setLoaded(true)}
-        onError={() => setError(true)}
-        style={{ display: loaded ? 'block' : 'none' }}
-        loading="lazy"
-      />
-      {error && (
-        <div className="image-error">
-          <p>Failed to load image</p>
-        </div>
-      )}
-      <div className="gallery-overlay">
-        <ZoomInIcon />
-      </div>
-    </div>
-  );
-};
-
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(9);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // Dynamically import all gallery images
   const galleryImages = useMemo(() => {
@@ -66,12 +37,24 @@ function Gallery() {
     return shuffleArray(images);
   }, []);
 
+  const visibleImages = galleryImages.slice(0, visibleCount);
+  const hasMoreImages = visibleCount < galleryImages.length;
+
   const openModal = (image) => {
     setSelectedImage(image);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
+  };
+
+  const loadMoreImages = () => {
+    setIsLoadingMore(true);
+    // Simulate a small delay for better UX
+    setTimeout(() => {
+      setVisibleCount(prev => Math.min(prev + 9, galleryImages.length));
+      setIsLoadingMore(false);
+    }, 300);
   };
 
   if (galleryImages.length === 0) {
@@ -81,19 +64,47 @@ function Gallery() {
   return (
     <section className="gallery-section">
       <div className="container">
-        <h2 className="gallery-title">Our Work</h2>
-        <p className="gallery-subtitle">Take a look at some of our beautiful charcuterie creations</p>
+        <h2 className="gallery-title">My Work</h2>
+        <p className="gallery-subtitle">
+          Take a look at some of my charcuterie creations
+          {galleryImages.length > 9 && (
+            <span className="gallery-count"> ({galleryImages.length} photos)</span>
+          )}
+        </p>
         
         <div className="gallery-grid">
-          {galleryImages.map((image, index) => (
-            <LazyImage
-              key={index}
+          {visibleImages.map((image, index) => (
+            <OptimizedImage
+              key={`${image.src}-${index}`}
               src={image.src}
               alt={image.alt}
               onClick={() => openModal(image)}
+              className="gallery-item"
             />
           ))}
         </div>
+
+        {hasMoreImages && (
+          <div className="load-more-container">
+            <button 
+              className="load-more-btn"
+              onClick={loadMoreImages}
+              disabled={isLoadingMore}
+            >
+              {isLoadingMore ? (
+                <>
+                  <div className="loading-spinner-small"></div>
+                  Loading...
+                </>
+              ) : (
+                <>
+                  <ExpandMoreIcon />
+                  Load More Photos ({galleryImages.length - visibleCount} remaining)
+                </>
+              )}
+            </button>
+          </div>
+        )}
 
         {selectedImage && (
           <div className="gallery-modal" onClick={closeModal}>
