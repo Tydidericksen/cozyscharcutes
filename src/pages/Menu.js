@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { MenuList } from '../helpers/MenuList';
 import MenuItem from '../components/MenuItem';
-import '../styles/Menu.css';
+import "../styles/Menu.css";
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
+
   const categories = [
     { id: 'all', name: 'All Items' },
-    { id: 'individual', name: 'Individual' },
-    { id: 'board', name: 'Boards' },
     { id: 'group', name: 'Group' },
+    { id: 'board', name: 'Boards' },
     { id: 'event', name: 'Events' },
     { id: 'custom', name: 'Custom' }
   ];
 
-  const filteredItems = selectedCategory === 'all' 
-    ? MenuList 
-    : MenuList.filter(item => item.category === selectedCategory);
+  const filteredItems = selectedCategory === 'all' ? MenuList : MenuList.filter(item => item.category === selectedCategory);
 
   return (
     <div className="menu-page">
@@ -25,11 +22,11 @@ function Menu() {
         <div className="menu-header">
           <h1 className="menu-title">Our Menu</h1>
           <p className="menu-subtitle">
-            Discover our handcrafted charcuterie boards and grazing tables, 
+            Discover our handcrafted charcuterie boards and grazing tables,
             perfect for any occasion
           </p>
         </div>
-
+        
         <div className="category-filters">
           {categories.map(category => (
             <button
@@ -41,7 +38,7 @@ function Menu() {
             </button>
           ))}
         </div>
-
+        
         <div className="menu-grid">
           {filteredItems.map((menuItem) => (
             <MenuItem
@@ -56,7 +53,7 @@ function Menu() {
             />
           ))}
         </div>
-
+        
         {filteredItems.length === 0 && (
           <div className="no-items">
             <p>No items found in this category.</p>

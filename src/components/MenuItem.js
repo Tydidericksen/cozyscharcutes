@@ -1,83 +1,100 @@
-// MenuItem.js
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CustomOrderModal from './CustomOrderModal';
+import QuantityModal from './QuantityModal';
 import '../styles/MenuItem.css';
 
 function MenuItem({ image, name, price, description, serves, category, id }) {
-  const [quantity, setQuantity] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [showQtyModal, setShowQtyModal] = useState(false);
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
-    addToCart({
-      id,
-      name,
-      price,
-      image,
-      description,
-      serves,
-      category
-    });
+  const handleGetQuote = () => {
+    setShowModal(true);
   };
 
-  const handleQuantityChange = (newQuantity) => {
-    if (newQuantity >= 1) {
-      setQuantity(newQuantity);
-    }
+  const handleAddToOrder = () => {
+    setShowQtyModal(true);
   };
+
+  const handleQuantitySubmit = (quantity) => {
+    addToCart({ id, name, price, image, description, serves, category, quantity });
+    setShowQtyModal(false);
+  };
+
+  const isVariablePrice = price === null || typeof price === 'string';
+  const hasMinimumOrder = id === 'charcuterie-cups' || id === 'charcuterie-boxes';
+  const showServes = !isVariablePrice && !hasMinimumOrder;
 
   return (
-    <div className="menu-item card">
-      <div className="menu-item-image">
-        <img src={image} alt={name} />
-        <div className="menu-item-overlay">
-          <div className="menu-item-category">{category}</div>
-        </div>
-      </div>
-      
-      <div className="menu-item-content">
-        <div className="menu-item-header">
-          <h3 className="menu-item-name">{name}</h3>
-          <span className="menu-item-price">${price.toFixed(2)}</span>
+    <>
+      <div className="menu-item card">
+        <div className="menu-item-image">
+          <img src={image} alt={name} />
+          <div className="menu-item-overlay">
+            <div className="menu-item-category">{category}</div>
+          </div>
         </div>
         
-        <p className="menu-item-description">{description}</p>
-        
-        <div className="menu-item-serves">
-          <span className="serves-label">Serves:</span>
-          <span className="serves-value">{serves}</span>
-        </div>
-        
-        <div className="menu-item-actions">
-          <div className="quantity-selector">
-            <button 
-              className="quantity-btn"
-              onClick={() => handleQuantityChange(quantity - 1)}
-              disabled={quantity <= 1}
-            >
-              <RemoveIcon />
-            </button>
-            <span className="quantity-display">{quantity}</span>
-            <button 
-              className="quantity-btn"
-              onClick={() => handleQuantityChange(quantity + 1)}
-            >
-              <AddIcon />
-            </button>
+        <div className="menu-item-content">
+          <div className="menu-item-header">
+            <h3 className="menu-item-name">{name}</h3>
+            <span className="menu-item-price">
+              {isVariablePrice ? 'Price varies' : `$${price.toFixed(2)}`}
+            </span>
           </div>
           
-          <button 
-            className="add-to-cart-btn"
-            onClick={handleAddToCart}
-          >
-            <ShoppingCartIcon />
-            Add to Cart
-          </button>
+          <p className="menu-item-description">{description}</p>
+          
+          {hasMinimumOrder && (
+            <div className="menu-item-minimum">
+              <span className="minimum-label">Minimum Order:</span>
+              <span className="minimum-value">10 pieces</span>
+            </div>
+          )}
+          
+          {showServes && (
+            <div className="menu-item-serves">
+              <span className="serves-label">Serves:</span>
+              <span className="serves-value">{serves}</span>
+            </div>
+          )}
+          
+          <div className="menu-item-actions">
+            <button 
+              className="add-to-cart-btn"
+              onClick={isVariablePrice ? handleGetQuote : handleAddToOrder}
+            >
+              <ShoppingCartIcon />
+              {isVariablePrice ? 'Get Quote' : 'Add to Order'}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      <CustomOrderModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        item={{
+          id,
+          name,
+          price,
+          image,
+          description,
+          serves,
+          category
+        }}
+      />
+
+      <QuantityModal
+        isOpen={showQtyModal}
+        onClose={() => setShowQtyModal(false)}
+        onSubmit={handleQuantitySubmit}
+        itemName={name}
+        hasMinimumOrder={hasMinimumOrder}
+      />
+    </>
   );
 }
 
