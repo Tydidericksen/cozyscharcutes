@@ -13,7 +13,7 @@ export const MenuList = [
     name: "Charcuterie Cups",
     image: Cups,
     price: 8,
-    description: "Individual charcuterie cups perfect for grab-and-go enjoyment. Each cup features a curated selection of meats, cheeses, and accompaniments.",
+    description: "Individual charcuterie cups perfect for grab-and-go enjoyment. Great for office meetings, quick snacks, or when you want a personal charcuterie experience.",
     serves: "1 person",
     category: "group"
   },
@@ -22,7 +22,7 @@ export const MenuList = [
     name: "Charcuterie Boxes",
     image: Boxes,
     price: 15,
-    description: "Perfect for small gatherings or office events. Our signature boxes include premium meats, artisanal cheeses, fresh fruits, nuts, and gourmet crackers.",
+    description: "Perfect for small gatherings, office events, or when you want to share the charcuterie love. Each box is thoughtfully curated with premium selections.",
     serves: "10-15 people",
     category: "group"
   },
@@ -31,7 +31,7 @@ export const MenuList = [
     name: "Small Board",
     image: Small,
     price: 75,
-    description: "Intimate charcuterie board ideal for date nights or small family gatherings. Features 3-4 premium meats, 3 artisanal cheeses, and seasonal accompaniments.",
+    description: "Intimate charcuterie board perfect for date nights, small family gatherings, or cozy evenings with friends. A beautiful way to elevate any intimate occasion.",
     serves: "3-5 people",
     category: "board"
   },
@@ -40,7 +40,7 @@ export const MenuList = [
     name: "Medium Board",
     image: MediumBoard,
     price: 150,
-    description: "Our most popular option! Perfect for dinner parties and celebrations. Includes 5-6 premium meats, 4-5 artisanal cheeses, fresh fruits, nuts, olives, and gourmet crackers.",
+    description: "Our most popular option! Ideal for dinner parties, game nights, book clubs, or any gathering where you want to impress. Perfect for creating memorable moments.",
     serves: "10-12 people",
     category: "board"
   },
@@ -49,7 +49,7 @@ export const MenuList = [
     name: "Large Board",
     image: Large,
     price: 250,
-    description: "Grand charcuterie display for special occasions and large gatherings. Features 7-8 premium meats, 6-7 artisanal cheeses, extensive accompaniments, and decorative elements.",
+    description: "Grand charcuterie display perfect for holiday celebrations, housewarming parties, or any special occasion where you want to make a statement. A true centerpiece for your event.",
     serves: "20-25 people",
     category: "board"
   },
@@ -58,7 +58,7 @@ export const MenuList = [
     name: "Grazing Table",
     image: GrazingTable,
     price: "Price varies",
-    description: "Ultimate charcuterie experience! A full grazing table setup perfect for weddings, corporate events, and large celebrations. Designed for your exact guest count - just let us know how many people you're expecting!",
+    description: "The ultimate charcuterie experience! Perfect for weddings, corporate events, baby showers, and large celebrations. Let us create a stunning display that will be the talk of your event.",
     serves: "50+",
     category: "event"
   },
@@ -67,7 +67,7 @@ export const MenuList = [
     name: "Numbers & Letters",
     image: NumbersLetters,
     price: "Price varies",
-    description: "Custom charcuterie boards shaped as numbers or letters. Perfect for birthdays, anniversaries, and special celebrations. Price depends on size and complexity.",
+    description: "Custom charcuterie boards shaped as numbers or letters. Perfect for milestone birthdays, anniversaries, graduations, or any celebration where you want to add a personal touch.",
     serves: "8-15 people",
     category: "custom"
   },
@@ -76,7 +76,7 @@ export const MenuList = [
     name: "Build Your Own",
     image: BuildYourOwn,
     price: "Price varies",
-    description: "Create your perfect charcuterie experience! Choose from our selection of premium meats, artisanal cheeses, and accompaniments to build your custom board. Price depends on selections.",
+    description: "Create your perfect charcuterie experience! The sky is the limit - just let us know what you're looking for and we'll work with you to create the perfect board.",
     serves: "2-4 people",
     category: "custom"
   }

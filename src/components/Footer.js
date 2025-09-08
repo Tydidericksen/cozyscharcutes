@@ -23,7 +23,7 @@ function Footer() {
           </div>
           
           <div className="footer-social">
-            <h3>Follow Us</h3>
+            <h3>Follow Cozy's Charcutes</h3>
             <div className="social-links">
               <a href="https://www.instagram.com/cozys.charcutes/" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                 <InstagramIcon />

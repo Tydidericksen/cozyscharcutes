@@ -118,7 +118,7 @@ function CustomOrderModal({ isOpen, onClose, item }) {
               <div className="form-note">
                 <strong>Deposit & Payment Terms:</strong>
                 <p>
-                  $500 non-refundable deposit for orders over $1000 (if canceled less than one week before the event). $250 deposit for orders over $500. The remaining balance is due the day before or the day of the event.
+                  There is a 50% deposit for orders over $500 that goes towards the total cost. Deposit is fully refundable if canceled before 1 week of the event. However, if canceled within 1 week of the event, the deposit is non-refundable as I will have already purchased many components/ingredients by then. The remaining balance can be paid anytime before or day of the event.
                 </p>
               </div>
             </div>

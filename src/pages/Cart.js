@@ -41,16 +41,16 @@ function Cart() {
     return `$${(item.price * item.quantity).toFixed(2)}`;
   };
 
-  const formatOrderDetails = () => {
+  const formatOrderDetails = (basicInfoData) => {
     let orderText = 'ORDER REQUEST DETAILS:\n\n';
     
     // Add basic information
     orderText += `CUSTOMER INFORMATION:\n`;
-    orderText += `- Name: ${basicInfo.name}\n`;
-    orderText += `- Email: ${basicInfo.email}\n`;
-    orderText += `- Phone: ${basicInfo.phone}\n`;
-    orderText += `- Event Date: ${basicInfo.eventDate}\n`;
-    orderText += `- Event Time: ${basicInfo.eventTime}\n\n`;
+    orderText += `- Name: ${basicInfoData.name}\n`;
+    orderText += `- Email: ${basicInfoData.email}\n`;
+    orderText += `- Phone: ${basicInfoData.phone}\n`;
+    orderText += `- Event Date: ${basicInfoData.eventDate}\n`;
+    orderText += `- Event Time: ${basicInfoData.eventTime || 'Not specified'}\n\n`;
     
     // Add order items
     orderText += `ORDER ITEMS:\n`;
@@ -98,7 +98,7 @@ function Cart() {
     const templateId = 'template_1l5yful';
     const publicKey = 'kLe_MNaPIORv5i1rJ';
 
-    const orderDetails = formatOrderDetails();
+    const orderDetails = formatOrderDetails(basicInfoData);
 
     const templateParams = {
       from_name: basicInfoData.name,
