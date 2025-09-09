@@ -67,9 +67,6 @@ function Gallery() {
         <h2 className="gallery-title">My Work</h2>
         <p className="gallery-subtitle">
           Take a look at some of my charcuterie creations
-          {galleryImages.length > 9 && (
-            <span className="gallery-count"> ({galleryImages.length} photos)</span>
-          )}
         </p>
         
         <div className="gallery-grid">
