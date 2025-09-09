@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import OptimizedImage from './ImageOptimizer';
 import '../styles/Gallery.css';
 
 // Function to shuffle array (Fisher-Yates algorithm)
@@ -16,7 +15,7 @@ const shuffleArray = (array) => {
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(12);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // Dynamically import all gallery images
@@ -50,63 +49,56 @@ function Gallery() {
 
   const loadMoreImages = () => {
     setIsLoadingMore(true);
-    // Simulate a small delay for better UX
     setTimeout(() => {
-      setVisibleCount(prev => Math.min(prev + 9, galleryImages.length));
+      setVisibleCount(prev => Math.min(prev + 12, galleryImages.length));
       setIsLoadingMore(false);
     }, 300);
   };
 
-  if (galleryImages.length === 0) {
-    return null;
-  }
-
   return (
     <section className="gallery-section">
       <div className="container">
-        <h2 className="gallery-title">My Work</h2>
+        <h2 className="gallery-title">Our Creations</h2>
         <p className="gallery-subtitle">
-          Take a look at some of my charcuterie creations
+          A glimpse into the artistry of Cozy's Charcutes.
         </p>
-        
+
         <div className="gallery-grid">
           {visibleImages.map((image, index) => (
-            <OptimizedImage
-              key={`${image.src}-${index}`}
-              src={image.src}
-              alt={image.alt}
+            <div 
+              key={index} 
+              className="gallery-item" 
               onClick={() => openModal(image)}
-              className="gallery-item"
-            />
+            >
+              <img 
+                src={image.src} 
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="gallery-overlay">
+                <ExpandMoreIcon className="zoom-icon" />
+              </div>
+            </div>
           ))}
         </div>
 
         {hasMoreImages && (
           <div className="load-more-container">
             <button 
-              className="load-more-btn"
-              onClick={loadMoreImages}
+              onClick={loadMoreImages} 
+              className="btn btn-secondary load-more-btn"
               disabled={isLoadingMore}
             >
-              {isLoadingMore ? (
-                <>
-                  <div className="loading-spinner-small"></div>
-                  Loading...
-                </>
-              ) : (
-                <>
-                  <ExpandMoreIcon />
-                  Load More Photos ({galleryImages.length - visibleCount} remaining)
-                </>
-              )}
+              {isLoadingMore ? 'Loading...' : `Load More Photos (${galleryImages.length - visibleCount} remaining)`}
             </button>
           </div>
         )}
 
         {selectedImage && (
-          <div className="gallery-modal" onClick={closeModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close" onClick={closeModal}>
+          <div className="gallery-modal-overlay" onClick={closeModal}>
+            <div className="gallery-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close-btn" onClick={closeModal}>
                 <CloseIcon />
               </button>
               <img src={selectedImage.src} alt={selectedImage.alt} />

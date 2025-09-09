@@ -24,27 +24,34 @@ const getImageFilenames = () => {
   }
 };
 
-// Lazy load a single image
+// Simplified lazy load component
 const LazyImage = ({ imagePath, alt, onClick, index }) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [inView, setInView] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
   const imgRef = useRef();
   const observerRef = useRef();
 
   useEffect(() => {
-    // Create intersection observer
+    // Create intersection observer with more aggressive settings
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
+          // Load image immediately when it comes into view
+          try {
+            const imageContext = require.context('../assets/gallery', false, /\.(jpg|jpeg|png|gif)$/i);
+            const src = imageContext(imagePath);
+            setImageSrc(src);
+          } catch (error) {
+            console.error('Failed to load image:', imagePath, error);
+            setError(true);
+          }
           observerRef.current?.disconnect();
         }
       },
       { 
-        threshold: 0.1,
-        rootMargin: '200px' // Start loading earlier
+        threshold: 0.01, // Load as soon as any part is visible
+        rootMargin: '300px' // Start loading much earlier
       }
     );
 
@@ -53,23 +60,11 @@ const LazyImage = ({ imagePath, alt, onClick, index }) => {
     }
 
     return () => {
-      observerRef.current?.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (inView && !imageSrc) {
-      // Only import the image when it comes into view
-      try {
-        const imageContext = require.context('../assets/gallery', false, /\.(jpg|jpeg|png|gif)$/i);
-        const src = imageContext(imagePath);
-        setImageSrc(src);
-      } catch (error) {
-        console.error('Failed to load image:', imagePath, error);
-        setError(true);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
-    }
-  }, [inView, imagePath, imageSrc]);
+    };
+  }, [imagePath]);
 
   const handleLoad = () => {
     setLoaded(true);
@@ -85,14 +80,14 @@ const LazyImage = ({ imagePath, alt, onClick, index }) => {
       className="gallery-item"
       onClick={onClick}
     >
-      {/* Placeholder while not in view or loading */}
-      {(!inView || (!loaded && !error)) && (
+      {/* Show loading spinner only if we haven't started loading yet */}
+      {!imageSrc && !error && (
         <div className="image-placeholder">
           <div className="loading-spinner"></div>
         </div>
       )}
 
-      {/* Actual image - only render when loaded */}
+      {/* Show image once we have the src */}
       {imageSrc && (
         <img
           src={imageSrc}
@@ -108,6 +103,13 @@ const LazyImage = ({ imagePath, alt, onClick, index }) => {
           loading="lazy"
           decoding="async"
         />
+      )}
+
+      {/* Show loading spinner while image is loading */}
+      {imageSrc && !loaded && !error && (
+        <div className="image-placeholder">
+          <div className="loading-spinner"></div>
+        </div>
       )}
 
       {/* Error state */}
@@ -127,7 +129,7 @@ const LazyImage = ({ imagePath, alt, onClick, index }) => {
 
 function LazyGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(12); // Show more initially
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [imagePaths, setImagePaths] = useState([]);
 
@@ -157,7 +159,7 @@ function LazyGallery() {
   const loadMoreImages = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount(prev => Math.min(prev + 9, imagePaths.length));
+      setVisibleCount(prev => Math.min(prev + 12, imagePaths.length));
       setIsLoadingMore(false);
     }, 300);
   };

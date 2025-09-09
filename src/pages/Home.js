@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import VideoSource from "../assets/VideoSource.mp4";
 import "../styles/Home.css";
-import LazyGallery from '../components/LazyGallery';
+import Gallery from '../components/Gallery';
 
 function Home() {
   const videoRef = useRef(null);
@@ -77,7 +77,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <LazyGallery />
+      <Gallery />
     </div>
   );
 }
