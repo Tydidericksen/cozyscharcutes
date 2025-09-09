@@ -33,18 +33,15 @@ function MenuItem({ id, name, image, price, description, serves, category }) {
     setShowQuantityModal(false);
   };
 
-  const handleCustomOrderSubmit = (customOptions) => {
-    addToCart({
-      id,
-      name,
-      price: "Price varies",
-      description,
-      serves,
-      category,
-      quantity: 1,
-      customOptions
-    });
-    setShowCustomOrderModal(false);
+  // Create the full item object for CustomOrderModal
+  const item = {
+    id,
+    name,
+    image,
+    price,
+    description,
+    serves,
+    category
   };
 
   return (
@@ -85,23 +82,20 @@ function MenuItem({ id, name, image, price, description, serves, category }) {
         </div>
       </div>
 
-      {showQuantityModal && (
-        <QuantityModal
-          itemName={name}
-          itemPrice={price}
-          onSubmit={handleQuantitySubmit}
-          onClose={() => setShowQuantityModal(false)}
-          hasMinimumOrder={hasMinimumOrder}
-        />
-      )}
+      <QuantityModal
+        isOpen={showQuantityModal}
+        itemName={name}
+        itemPrice={price}
+        onSubmit={handleQuantitySubmit}
+        onClose={() => setShowQuantityModal(false)}
+        hasMinimumOrder={hasMinimumOrder}
+      />
 
-      {showCustomOrderModal && (
-        <CustomOrderModal
-          itemName={name}
-          onSubmit={handleCustomOrderSubmit}
-          onClose={() => setShowCustomOrderModal(false)}
-        />
-      )}
+      <CustomOrderModal
+        isOpen={showCustomOrderModal}
+        item={item}
+        onClose={() => setShowCustomOrderModal(false)}
+      />
     </>
   );
 }
