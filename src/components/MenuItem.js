@@ -22,6 +22,7 @@ function MenuItem({ id, name, image, price, description, serves, category }) {
 
   const handleQuantitySubmit = (quantity) => {
     addToCart({
+      image,
       id,
       name,
       price,
