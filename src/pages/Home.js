@@ -61,14 +61,16 @@ function Home() {
               <span className="title-line">COZY'S</span>
               <span className="title-accent">CHARCUTES</span>
             </h1>
-            <p className="hero-subtitle">Crafted with Passion, Shared with Love</p>
             <p className="hero-description">
               Elevate your gatherings with our exquisite charcuterie boards and grazing tables,
               perfectly curated for every occasion.
             </p>
             <div className="hero-buttons">
-              <Link to="/menu" className="btn btn-primary hero-btn">
+              <Link to="/menu" className="btn btn-secondary hero-btn">
                 Explore Menu
+              </Link>
+              <Link to="/catering" className="btn btn-secondary hero-btn">
+                Catering Services
               </Link>
               <Link to="/contact" className="btn btn-secondary hero-btn">
                 Contact Us

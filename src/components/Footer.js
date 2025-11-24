@@ -19,7 +19,6 @@ function Footer() {
               <span className="logo-text">COZY'S</span>
               <span className="logo-accent">CHARCUTES</span>
             </div>
-            <p className="footer-tagline">Crafted with Passion, Shared with Love</p>
           </div>
           
           <div className="footer-social">

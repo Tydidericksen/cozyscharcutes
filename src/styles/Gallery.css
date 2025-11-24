@@ -92,7 +92,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-xl);
-  background: var(--primary-color);
+  background: var(--secondary-color);
   color: var(--white);
   border: none;
   border-radius: var(--radius-full);
@@ -105,7 +105,7 @@
 }
 
 .load-more-btn:hover:not(:disabled) {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }

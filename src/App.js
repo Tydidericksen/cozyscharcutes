@@ -12,6 +12,7 @@ const About = React.lazy(() => import('./pages/About'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const Cart = React.lazy(() => import('./pages/Cart'));
 const FAQ = React.lazy(() => import('./pages/FAQ'));
+const Catering = React.lazy(() => import('./pages/Catering'));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/contact" exact element={<Contact />} />
                 <Route path="/cart" exact element={<Cart />} />
                 <Route path="/faq" exact element={<FAQ />} />
+                <Route path="/catering" exact element={<Catering />} />
               </Routes>
             </Suspense>
           </main>

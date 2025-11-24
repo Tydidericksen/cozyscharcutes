@@ -26,6 +26,7 @@ function Navbar() {
         <div className="navbar-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/menu" className="nav-link">Menu</Link>
+          <Link to="/catering" className="nav-link">Catering</Link>
           <Link to="/faq" className="nav-link">FAQ</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
         </div>
@@ -50,6 +51,9 @@ function Navbar() {
         </Link>
         <Link to="/menu" className="nav-link" onClick={() => setOpenLinks(false)}>
           Menu
+        </Link>
+        <Link to="/catering" className="nav-link" onClick={() => setOpenLinks(false)}>
+          Catering
         </Link>
         <Link to="/faq" className="nav-link" onClick={() => setOpenLinks(false)}>
           FAQ

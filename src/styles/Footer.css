@@ -1,5 +1,5 @@
 .footer {
-  background: var(--primary-color);
+  background: var(--secondary-color);
   color: var(--white);
   padding: var(--spacing-3xl) 0 var(--spacing-lg) 0;
   margin-top: auto;
@@ -37,7 +37,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -55,7 +55,7 @@
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .social-links {
@@ -77,7 +77,7 @@
 }
 
 .social-link:hover {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   color: var(--white);
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
@@ -94,7 +94,7 @@
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .footer-info p {
